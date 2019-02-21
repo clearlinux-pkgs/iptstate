@@ -1,0 +1,31 @@
+From c71e5f7eabe591a3f845a20df43341255ca43102 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 21 Feb 2019 15:14:35 -0800
+Subject: [PATCH] Add destdir support
+
+---
+ Makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 68db0fc..c21b6db 100644
+--- a/Makefile
++++ b/Makefile
+@@ -8,11 +8,12 @@
+ 
+ ### USERS CAN CHANGE STUFF HERE
+ 
++DESTDIR?=
+ PREFIX?=/usr
+-SBIN?=$(PREFIX)/sbin
++SBIN?=$(DESTDIR)/$(PREFIX)/bin
+ INSTALL?=/usr/bin/install
+ STRIP?=/usr/bin/strip
+-MAN?=$(PREFIX)/share/man
++MAN?=$(DESTDIR)/$(PREFIX)/share/man
+ 
+ ### ADVANCED USERS AND PACKAGERS MIGHT WANT TO CHANGE THIS
+ 
+-- 
+2.20.1
+
