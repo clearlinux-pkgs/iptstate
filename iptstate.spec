@@ -6,7 +6,7 @@
 #
 Name     : iptstate
 Version  : 2.2.6
-Release  : 1
+Release  : 2
 URL      : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2
 Source0  : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2
 Source99 : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2.asc
