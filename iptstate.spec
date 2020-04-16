@@ -6,10 +6,10 @@
 #
 Name     : iptstate
 Version  : 2.2.6
-Release  : 2
+Release  : 3
 URL      : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2
 Source0  : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2
-Source99 : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2.asc
+Source1  : https://github.com/jaymzh/iptstate/releases/download/v2.2.6/iptstate-2.2.6.tar.bz2.asc
 Summary  : Display IP Tables state table information in a "top"-like interface
 Group    : Development/Tools
 License  : Zlib
@@ -34,7 +34,6 @@ IP Tables State (iptstate) was originally written to
 Summary: bin components for the iptstate package.
 Group: Binaries
 Requires: iptstate-license = %{version}-%{release}
-Requires: iptstate-man = %{version}-%{release}
 
 %description bin
 bin components for the iptstate package.
@@ -58,23 +57,28 @@ man components for the iptstate package.
 
 %prep
 %setup -q -n iptstate-2.2.6
+cd %{_builddir}/iptstate-2.2.6
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1550790921
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1587079480
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1550790921
+export SOURCE_DATE_EPOCH=1587079480
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/iptstate
-cp LICENSE %{buildroot}/usr/share/package-licenses/iptstate/LICENSE
+cp %{_builddir}/iptstate-2.2.6/LICENSE %{buildroot}/usr/share/package-licenses/iptstate/7e8be2790c3c5c584dd9c120e96db070635964cc
 %make_install
 
 %files
@@ -86,7 +90,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/iptstate/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/iptstate/LICENSE
+/usr/share/package-licenses/iptstate/7e8be2790c3c5c584dd9c120e96db070635964cc
 
 %files man
 %defattr(0644,root,root,0755)
